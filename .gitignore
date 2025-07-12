@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+sensorreader.ino.bin/
 # Compiled Object files
 *.slo
 *.lo
