@@ -16,5 +16,5 @@ Refer to `sensorreader.ino` for usage details.
 - [x] connect esp32 and microbit via serial pins
 - [x] read from sensors connected to esp32
 - [x] make a processing app that can read from esp32 via bluetooth
-- [] make a graph of speed
-- [] make an emergency signal in case of a fall
+- [ ] make a graph of speed
+- [ ] make an emergency signal in case of a fall
