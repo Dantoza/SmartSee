@@ -60,19 +60,20 @@ void loop() {
     long duration = pulseIn(ECHO_PIN, HIGH);
     distance = duration * 0.034 / 2;
     
-    // Send raw data via Bluetooth
-    if (SerialBT.connected()) {
-      SerialBT.print("D:");
-      SerialBT.println(distance);
-      SerialBT.print("T:");
-      SerialBT.println(temperature);
-      SerialBT.print("H:");
-      SerialBT.println(humidity);
-      SerialBT.print("M:");
-      SerialBT.println(moisture);
-      SerialBT.print("S:");
-      SerialBT.println(speed);
+    SerialBT.println("D:" + String(distance));
+    SerialBT.println("T:" + String(temperature));
+    SerialBT.println("H:" + String(humidity));
+    SerialBT.println("M:" + String(moisture));
+    SerialBT.println("S:" + String(speed));
+      if (SerialBT.connected()) {
+    if (emergency == 1) {
+      SerialBT.println("E:1");
+    } else {
+      SerialBT.println("E:0");
     }
+  }
+     
+    
     
     // Convert sensor readings to binary values
     if (distance > 20) {
@@ -98,16 +99,11 @@ void loop() {
     } else {
       moisture = 0;
     }
-    
-    // Send processed data via Serial
-    Serial.print("D:");
-    Serial.println(distance);
-    Serial.print("T:");
-    Serial.println(temperature);
-    Serial.print("H:");
-    Serial.println(humidity);
-    Serial.print("M:");
-    Serial.println(moisture);
+    Serial.println("D:" + String(distance));
+    Serial.println("T:" + String(temperature));
+    Serial.println("H:" + String(humidity));
+    Serial.println("M:" + String(moisture));
+    Serial.println("S:" + String(speed));
   }
   // Handle serial and Bluetooth commands
   String inputString = "";
@@ -148,13 +144,7 @@ void loop() {
   }
   
   // Send emergency status via Bluetooth
-  if (SerialBT.connected()) {
-    if (emergency == 1) {
-      SerialBT.println("E:1");
-    } else {
-      SerialBT.println("E:0");
-    }
-  }
 
-  delay(2000);
+
+  delay(500);
 }
