@@ -274,7 +274,7 @@ void drawDeviceSelection() {
     fill(onPrimaryColor);
     textAlign(CENTER);
     textSize(20);
-    text("Phone", 64, cardY + 42);
+    text("Device", 64, cardY + 42);
     textAlign(LEFT);
     fill(onSurfaceColor);
     textSize(22);
@@ -358,14 +358,14 @@ void NoConnected() {
   fill(outlineColor);
   textAlign(CENTER);
   textSize(48);
-  text("phone", width/2, height/2 - 80);
+  text("Phone", width/2, height/2 - 80);
   fill(onSurfaceColor);
   textSize(24);
   text("No Paired Devices", width/2, height/2 - 20);
   fill(outlineColor);
   textSize(18);
   text("Pair your ESP32 in Android Settings", width/2, height/2 + 10);
-  text("to get started with SmartSee", width/2, height/2 + 35);
+  text("To get started with SmartSee", width/2, height/2 + 35);
   fill(primaryColor);
   rect(width/2 - 100, height/2 + 70, 200, 56, 28);
   fill(onPrimaryColor);
