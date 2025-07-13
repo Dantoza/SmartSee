@@ -13,8 +13,8 @@ Code for the DIY smart stick for blind people
 Refer to `sensorreader.ino` for usage details.
 
 ## To-do
--[x]connect esp32 and microbit via serial pins
--[x]read from sensors connected to esp32
--[x]make a processing app that can read from esp32 via bluetooth
--[] make a graph of speed
--[]make an emergency signal in case of a fall
+- [x] connect esp32 and microbit via serial pins
+- [x] read from sensors connected to esp32
+- [x] make a processing app that can read from esp32 via bluetooth
+- [] make a graph of speed
+- [] make an emergency signal in case of a fall
