@@ -35,7 +35,6 @@ String[] deviceAddresses;
 String message = "Initializing Bluetooth...";
 boolean isConnected = false;
 int selectedDeviceIndex = -1;
-float cardElevation = 0;
 int hoveredCard = -1;
 
 UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -49,22 +48,19 @@ void setup() {
   requestPermission("BLUETOOTH_PRIVILIGED");
   requestPermission("BLUETOOTH_SCAN");
     
-  initializeBluetooth();
+  startBT();
 }
 
-void initializeBluetooth() {
+void startBT() {
   try {
     BTAntenna = BluetoothAdapter.getDefaultAdapter();
     
-    if (BTAntenna == null) {
-      message = "Bluetooth not supported on this device";
-    } 
-    else if (!BTAntenna.isEnabled()) {
-      message = "Bluetooth is disabled. Please enable it in settings.";
+    if (!BTAntenna.isEnabled()) {
+      message = "Bluetooth off. open settings.";
     } 
     else {
-      message = "Bluetooth is enabled!";
-      listPairedDevices();
+      message = "Bluetooth on";
+      listBTDevice();
     }
     
   } catch (Exception e) {
@@ -73,7 +69,7 @@ void initializeBluetooth() {
   }
 }
 
-void listPairedDevices() {
+void listBTDevice() {
   try {
     Set<BluetoothDevice> pairedDevices = BTAntenna.getBondedDevices();
     
@@ -99,8 +95,7 @@ void listPairedDevices() {
   }
 }
 
-void connectToDevice(int deviceIndex) {
-  if (deviceIndex < 0 || deviceIndex >= deviceAddresses.length) return;
+void ConnectBT(int deviceIndex) {
   
   try {
     if (isConnected) {
@@ -141,7 +136,6 @@ void connectToDevice(int deviceIndex) {
     println("Successfully connected to " + deviceList[deviceIndex]);
     
     Thread.sleep(500);
-    sendData("ANDROID_CONNECTED\n");
     
   } catch (Exception e) {
     message = "Connection failed!\n";
@@ -166,7 +160,7 @@ void disconnectDevice() {
     isConnected = false;
     message = "Disconnected\n";
     
-    listPairedDevices();
+    listBTDevice();
     
     println("Disconnected from Bluetooth device");
   } catch (IOException e) {
@@ -221,9 +215,9 @@ void draw() {
   if (!isConnected && deviceList != null && deviceList.length > 0) {
     drawDeviceSelection();
   } else if (isConnected) {
-    drawConnectedState();
+    ConnectedScreen();
   } else {
-    drawEmptyState();
+    ChooseConection();
   }
   
   if (isConnected) {
@@ -324,7 +318,7 @@ void drawDeviceSelection() {
   }
 }
 
-void drawConnectedState() {
+void ConnectedScreen() {
   fill(onSurfaceColor);
   textAlign(LEFT);
   textSize(28);
@@ -397,7 +391,7 @@ void drawConnectedState() {
   }
 }
 
-void drawEmptyState() {
+void ChooseConection() {
   fill(outlineColor);
   textAlign(CENTER);
   textSize(48);
@@ -434,7 +428,7 @@ void mousePressed() {
       if (mouseX >= 24 && mouseX <= width-24 && 
           mouseY >= cardY && mouseY <= cardY + 120) {
         println("Connecting to device " + (i+1) + ": " + deviceList[i]);
-        connectToDevice(i);
+        ConnectBT(i);
         break;
       }
     }
