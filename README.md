@@ -9,6 +9,8 @@ Code for the DIY smart stick for blind people
 | ECHO_PIN       | 5          | Ultrasonic sensor echo     |
 | DHT_PIN        | 15         | DHT11 temperature/humidity |
 | MOISTURE_PIN   | 13         | Soil/moisture sensor       |
+| TX0            | 1          | Serial transmit to micro:bit Pin 0 |
+| RX0            | 3          | Serial receive from micro:bit Pin 1 |
 
 Refer to `sensorreader.ino` for usage details.
 

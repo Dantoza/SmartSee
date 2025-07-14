@@ -65,13 +65,9 @@ void loop() {
     SerialBT.println("H:" + String(humidity));
     SerialBT.println("M:" + String(moisture));
     SerialBT.println("S:" + String(speed));
-      if (SerialBT.connected()) {
-    if (emergency == 1) {
-      SerialBT.println("E:1");
-    } else {
-      SerialBT.println("E:0");
-    }
-  }
+    SerialBT.println("E:"+String(emergency));
+    
+  
      
     
     
@@ -143,7 +139,6 @@ void loop() {
       break;
   }
   
-  // Send emergency status via Bluetooth
 
 
   delay(500);
